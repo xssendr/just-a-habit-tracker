@@ -1,16 +1,17 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Dumbbell, Moon, Apple, Check, Zap, TrendingUp } from "lucide-react";
+
+type IconType = 'dumbbell' | 'moon' | 'apple';
 
 interface NeuroplasticityCard {
     title: string;
     description: string;
-    icon: any;
+    icon: IconType;
     color: string;
 }
 
 type NeuroplasticityStore = {
-  cards: NeuroplasticityCard[]
+  cards: NeuroplasticityCard[];
   completed: Record<string, boolean>;
   lastResetDate: string | null;
   toggleCard: (title: string) => void;
@@ -24,19 +25,19 @@ export const useNeuroplasticityStore = create<NeuroplasticityStore>()(
         {
         title: "Упражнения",
         description: "Физическая активность всячески помогает создавать новые нейроны за счет... ээээ...",
-        icon: <Dumbbell />,
+        icon: "dumbbell",
         color: "text-red-600 dark:text-red-400"
     },
     {
         title: "Сон",
         description: "Во время сна мозг обрабатывает полученную информацию и создает новые нейронные связи. 8 часов сна - минимум",
-        icon: <Moon />,
+        icon: "moon",
         color: "text-indigo-600 dark:text-indigo-400"
     },
     {
         title: "Полезное питание",
         description: "Возможно, не знаю",
-        icon: <Apple />,
+        icon: "apple",
         color: "text-emerald-600 dark:text-emerald-400"
     }
       ],

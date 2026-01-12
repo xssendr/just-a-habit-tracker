@@ -1,26 +1,24 @@
 import React from "react";
 import { Card, CardContent } from "./ui/card";
 import { Button } from "./ui/button";
-import { Dumbbell, Moon, Apple, Check, Zap, TrendingUp } from "lucide-react";
-import { useNeuroplasticityStore } from "../../stores/neuroplasticity";
-import { useHabitStore } from "../../stores/habits";
+import { Check, Dumbbell, Moon, Apple, TrendingUp } from "lucide-react";
+import { useNeuroplasticityStore } from "stores/neuroplasticity";
 
-interface NeuroplasticityCard {
-    title: string;
-    description: string;
-    icon: React.ReactNode;
-    color: string;
+type IconType = 'dumbbell' | 'moon' | 'apple';
+
+const iconMap: Record<IconType, React.ComponentType<any>> = {
+    dumbbell: Dumbbell,
+    moon: Moon,
+    apple: Apple
 }
 
 function Neuroplasticity() {
     const { cards, toggleCard, isCompleted } = useNeuroplasticityStore();
-    const { habits, getIntensityStats } = useHabitStore();
-
-    
     return (
         <>
         {cards.map(card => {
             const completed = isCompleted(card.title);
+            const Icon = iconMap[card.icon]
             return (
                 <Card 
                     key={card.title}
@@ -36,7 +34,7 @@ function Neuroplasticity() {
                             <div className={`rounded-lg bg-muted p-2.5 ${card.color} transition-colors ${
                                 completed ? "bg-primary/10" : ""
                             }`}>
-                                {card.icon}
+                                <Icon />
                             </div>
                             <div className="flex-1 min-w-0">
                                 <h3 className="text-base font-bold tracking-tight mb-1.5">
