@@ -12,7 +12,7 @@ import { Button } from "~/components/ui/button"
 import { useHabitStore } from "stores/habits"
 import { AlertTriangle } from "lucide-react"
 
-function DeleteModal({ trigger, id }: { trigger: React.ReactNode, id: number | string }) {
+function DeleteModal({ trigger, id }: { trigger: React.ReactNode, id: string }) {
   const { deleteHabit } = useHabitStore()
   const [open, setOpen] = useState(false)
 
@@ -30,9 +30,9 @@ function DeleteModal({ trigger, id }: { trigger: React.ReactNode, id: number | s
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 dark:bg-red-900/20">
             <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
           </div>
-          <DialogTitle className="text-center text-xl font-bold">Delete Habit?</DialogTitle>
+          <DialogTitle className="text-center text-xl font-bold">Удалить привычку?</DialogTitle>
           <DialogDescription className="text-center text-base pt-2">
-            Are you sure you want to delete this habit? This action cannot be undone and all your progress will be lost.
+              Это действие невозможно отменить и весь прогресс полетит в кювет
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-3 pt-4 sm:flex-row-reverse">
@@ -41,11 +41,11 @@ function DeleteModal({ trigger, id }: { trigger: React.ReactNode, id: number | s
             variant="destructive" 
             onClick={handleDelete}
           >
-            Delete Habit
+            Удалить
           </Button>
           <DialogClose asChild>
             <Button className="flex-1 cursor-pointer" variant="outline">
-              Cancel
+              Отменить
             </Button>
           </DialogClose>
         </div>

@@ -18,15 +18,8 @@ interface SkipReasonModalProps {
 
 const skipReasons = [
   {
-    id: "sick",
-    label: "Заболел(а)",
-    icon: Heart,
-    description: "Плохое самочувствие, болезнь",
-  },
-  {
     id: "busy",
     label: "Занятость",
-    icon: Briefcase,
     description: "Работа, учеба, важные дела",
   },
   {
@@ -68,7 +61,6 @@ export function SkipReasonModal({ open, onOpenChange, onConfirm, habitName }: Sk
         
         <div className="grid gap-2 py-4">
           {skipReasons.map((reason) => {
-            const IconComponent = reason.icon;
             return (
               <Button
                 key={reason.id}
@@ -76,9 +68,6 @@ export function SkipReasonModal({ open, onOpenChange, onConfirm, habitName }: Sk
                 className="h-auto p-3 justify-start text-left"
                 onClick={() => handleReasonSelect(reason.label)}
               >
-                {IconComponent && (
-                  <IconComponent className="h-4 w-4 mr-3 flex-shrink-0" />
-                )}
                 <div className="flex flex-col">
                   <span className="font-medium">{reason.label}</span>
                   <span className="text-xs text-muted-foreground">
