@@ -185,6 +185,7 @@ export const useHabitStore = create<HabitStore>()(
 
       checkMissedDays: () => {
         const today = new Date();
+        const todayStr = today.toISOString().split("T")[0];
         const missedHabits: Array<{ habit: Habit; daysMissed: string[] }> = [];
         
         set((state) => {
@@ -193,31 +194,38 @@ export const useHabitStore = create<HabitStore>()(
             if (!migratedHabit.lastCompleted) return migratedHabit;
             
             const lastCompletedDate = new Date(migratedHabit.lastCompleted);
-            const currentDate = new Date(today);
-            currentDate.setDate(currentDate.getDate() - 1);
             
-            const missedDays: string[] = [];
+            // Вычисляем разницу в днях между сегодняшним днем и последним выполнением
+            const daysDiff = Math.floor((today.getTime() - lastCompletedDate.getTime()) / (1000 * 60 * 60 * 24));
             
-            while (currentDate > lastCompletedDate) {
-              const dateStr = currentDate.toISOString().split("T")[0];
-          
-              if (!migratedHabit.missedDays.includes(dateStr)) {
-                missedDays.push(dateStr);
-              }
-              currentDate.setDate(currentDate.getDate() - 1);
-            }
-            
-            if (missedDays.length > 0) {
-              missedHabits.push({ habit: migratedHabit, daysMissed: missedDays });
+            // Если разница >= 2 дня, значит был пропуск (сбрасываем стрик)
+            if (daysDiff >= 2) {
+              const missedDays: string[] = [];
               
-              // Сброс стрика
-              return {
-                ...migratedHabit,
-                progress: 0,
-                lastCompleted: null,
-                missedDays: [...migratedHabit.missedDays, ...missedDays].filter((date, index, arr) => arr.indexOf(date) === index), // Уникальные даты
-                intensityHistory: [],
-              };
+              // Собираем все пропущенные дни
+              const currentDate = new Date(today);
+              currentDate.setDate(currentDate.getDate() - 1); // Начинаем со вчерашнего дня
+              
+              while (currentDate > lastCompletedDate) {
+                const dateStr = currentDate.toISOString().split("T")[0];
+                if (!migratedHabit.missedDays.includes(dateStr)) {
+                  missedDays.push(dateStr);
+                }
+                currentDate.setDate(currentDate.getDate() - 1);
+              }
+              
+              if (missedDays.length > 0) {
+                missedHabits.push({ habit: migratedHabit, daysMissed: missedDays });
+                
+                // Сброс стрика
+                return {
+                  ...migratedHabit,
+                  progress: 0,
+                  lastCompleted: null,
+                  missedDays: [...migratedHabit.missedDays, ...missedDays].filter((date, index, arr) => arr.indexOf(date) === index),
+                  intensityHistory: [],
+                };
+              }
             }
             
             return migratedHabit;
