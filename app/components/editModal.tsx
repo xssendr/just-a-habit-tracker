@@ -22,7 +22,7 @@ type HabitFormValues = {
 
 type HabitType = "Creating" | "Replacing" | "Breaking"
 
-function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | string }) {
+function EditModal({ trigger, id }: { trigger: React.ReactNode, id: string }) {
   const { editHabit, getHabitById } = useHabitStore()
   const [open, setOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<"create" | "replace" | "break">("create")
@@ -74,7 +74,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 className="flex flex-col gap-4 mt-4"
               >
                 <div className="flex flex-col gap-1">
-                  <Label htmlFor="trigger-edit" className="text-sm font-semibold">Trigger</Label>
+                  <Label htmlFor="trigger-edit" className="text-sm font-semibold">Триггер</Label>
                   <Input
                     id="trigger-edit"
                     placeholder="e.g., After I wake up"
@@ -84,7 +84,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <Label htmlFor="action-edit" className="text-sm font-semibold">Action</Label>
+                  <Label htmlFor="action-edit" className="text-sm font-semibold">Действие</Label>
                   <Input
                     id="action-edit"
                     placeholder="e.g., Drink a glass of water"
@@ -94,7 +94,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 </div>
 
                 <div className="flex flex-col gap-1">
-                  <Label htmlFor="reward-edit" className="text-sm font-semibold">Reward</Label>
+                  <Label htmlFor="reward-edit" className="text-sm font-semibold">Награда</Label>
                   <Input
                     id="reward-edit"
                     placeholder="e.g., Feel refreshed and hydrated"
@@ -108,7 +108,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                       className="flex-1 cursor-pointer shadow-sm hover:shadow-md transition-shadow" 
                       type="submit"
                     >
-                      Save Changes
+                      Сохранить
                     </Button>
                   <DialogClose asChild>
                     <Button
@@ -116,7 +116,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                       type="button"
                       variant="outline"
                     >
-                      Cancel
+                      Отменить
                     </Button>
                   </DialogClose>
                 </div>
@@ -127,7 +127,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 className="flex flex-col gap-5 mt-4"
               >
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="trigger-replace-edit" className="text-sm font-semibold">Trigger</Label>
+                  <Label htmlFor="trigger-replace-edit" className="text-sm font-semibold">Триггер</Label>
                   <Input
                     id="trigger-replace-edit"
                     placeholder="e.g., When I feel stressed"
@@ -137,7 +137,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="old-action-edit" className="text-sm font-semibold">Old Action</Label>
+                  <Label htmlFor="old-action-edit" className="text-sm font-semibold">Старое Действие</Label>
                   <Input
                     id="old-action-edit"
                     placeholder="e.g., Eat junk food"
@@ -149,7 +149,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="new-action-edit" className="text-sm font-semibold">New Action</Label>
+                  <Label htmlFor="new-action-edit" className="text-sm font-semibold">Новое Действие</Label>
                   <Input
                     id="new-action-edit"
                     placeholder="e.g., Take 5 deep breaths"
@@ -159,7 +159,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                 </div>
 
                 <div className="flex flex-col gap-2">
-                  <Label htmlFor="reward-replace-edit" className="text-sm font-semibold">Reward</Label>
+                  <Label htmlFor="reward-replace-edit" className="text-sm font-semibold">Награда</Label>
                   <Input
                     id="reward-replace-edit"
                     placeholder="e.g., Feel calm and in control"
@@ -173,7 +173,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                       className="flex-1 cursor-pointer shadow-sm hover:shadow-md transition-shadow" 
                       type="submit"
                     >
-                      Save Changes
+                      Сохранить
                     </Button>
                   <DialogClose asChild>
                     <Button
@@ -181,7 +181,7 @@ function EditModal({ trigger, id }: { trigger: React.ReactNode, id: number | str
                       type="button"
                       variant="outline"
                     >
-                      Cancel
+                      Отменить
                     </Button>
                   </DialogClose>
                 </div>

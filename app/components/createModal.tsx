@@ -248,7 +248,7 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
                       variant="outline"
                       onClick={() => reset()}
                     >
-                      Отмена
+                      Отменить
                     </Button>
                   </DialogClose>
                 </div>
@@ -316,7 +316,7 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
                       variant="outline"
                       onClick={() => reset()}
                     >
-                      Отмена
+                      Отменить
                     </Button>
                   </DialogClose>
                 </div>
@@ -372,7 +372,7 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
                       variant="outline"
                       onClick={() => reset()}
                     >
-                      Отмена
+                      Отменить
                     </Button>
                   </DialogClose>
                 </div>

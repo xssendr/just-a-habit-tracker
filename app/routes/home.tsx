@@ -108,7 +108,6 @@ export default function Home() {
             </div>
           )}
         </section>
-
         <section className="space-y-4 pb-8 md:pb-10 lg:pb-12">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <h2 className="text-xl font-bold tracking-tight sm:text-2xl">
