@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { ThemeProvider } from "~/components/theme-provider"
+import { PwaInit } from "~/components/pwa-init";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -22,6 +23,7 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "manifest", href: "/manifest.json" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -37,6 +39,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
         {children}
         </ThemeProvider>
+        <PwaInit />
         <ScrollRestoration />
         <Scripts />
       </body>

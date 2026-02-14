@@ -1,11 +1,11 @@
 'use strict';
 
-const CACHE_NAME = 'v1';
+const CACHE_NAME = 'habit-tracker-v1';
 const urlsToCache = [
     '/',
-    '/index.html',
-    '/styles.css',
-    '/script.js',
+    '/manifest.json',
+    '/favicon.ico',
+    // Add other static assets as needed
 ];
 
 // Install Service Worker
@@ -47,18 +47,4 @@ self.addEventListener('activate', (event) => {
             );
         })
     );
-});
-
-// Background Sync
-self.addEventListener('sync', (event) => {
-    if (event.tag == 'sync-updates') {
-        event.waitUntil(
-            // Perform action to sync here, e.g. sending data to the server
-            fetch('/update-data').then(
-                (response) => response.json()
-            ).then(
-                (data) => console.log('Data synced:', data)
-            )
-        );
-    }
 });

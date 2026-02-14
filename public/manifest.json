@@ -1,1 +1,8 @@
-{\n  "name": "Just a Habit Tracker",\n  "short_name": "Habit Tracker",\n  "theme_color": "#008080",\n  "background_color": "#ffffff",\n  "display": "standalone",\n  "start_url": "/index.html",\n  "icons": [\n    {\n      "src": "images/icon-192.png",\n      "sizes": "192x192",\n      "type": "image/png"\n    },\n    {\n      "src": "images/icon-512.png",\n      "sizes": "512x512",\n      "type": "image/png"\n    }\n  ],\n  "screenshots": [\n    {\n      "src": "screenshots/screenshot1.png",\n      "sizes": "640x480",\n      "type": "image/png",\n      "label": "Main Interface"\n    },\n    {\n      "src": "screenshots/screenshot2.png",\n      "sizes": "640x480",\n      "type": "image/png",\n      "label": "Tracking Example"\n    }\n  ],\n  "categories": [\n    "productivity",\n    "health"\n  ],\n  "shortcuts": [\n    {\n      "name": "Add Habit",\n      "short_name": "Add",\n      "icon": {\n        "src": "images/icon-add.png"\n      },\n      "url": "add.html",\n      "description": "Quickly add a new habit"\n    },\n    {\n      "name": "View Stats",\n      "short_name": "Stats",\n      "icon": {\n        "src": "images/icon-stats.png"\n      },\n      "url": "stats.html",\n      "description": "See your progress stats"\n    }\n  ],\n  "share_target": {\n    "action": "/share",\n    "params": {\n      "title": "I want to share my progress!",\n      "text": "Check out my habit tracking progress.",\n      "url": "https://just-a-habit-tracker.example.com"\n    }\n  }\n}
+{
+  "name": "Just a Habit Tracker",
+  "short_name": "Habit Tracker",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#008080",
+  "background_color": "#ffffff"
+}
