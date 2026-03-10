@@ -18,10 +18,10 @@ const tabs: TabItem[] = [
     isActive: (p) => p === "/" || p === "",
   },
   {
-    to: "/ai-psychologist",
+    to: "/ai",
     label: "ИИ",
     icon: <Brain className="size-5" />,
-    isActive: (p) => p.startsWith("/ai-psychologist"),
+    isActive: (p) => p.startsWith("/ai"),
   },
 ];
 
