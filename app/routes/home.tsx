@@ -7,6 +7,7 @@ import { useHabitStore } from "stores/habits";
 import { Neuroplasticity } from "~/components/neuroplasticity";
 import { Card, CardContent } from "~/components/ui/card";
 import { OnboardingModal } from "~/components/onboarding/OnboardingModal";
+import { useEffect } from "react";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,6 +20,9 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  useEffect(() => {
+    console.log(window.Telegram?.WebApp.initData)
+  })
   const { habits } = useHabitStore();
   const maxHabits = 68;
   const isLimitReached = habits.length >= maxHabits;

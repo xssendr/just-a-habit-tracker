@@ -7,7 +7,6 @@ import {
   ScrollRestoration,
 } from "react-router";
 import { ThemeProvider } from "~/components/theme-provider"
-import { PwaInit } from "~/components/pwa-init";
 import { BottomTabs } from "~/components/bottom-tabs";
 
 import type { Route } from "./+types/root";
@@ -31,6 +30,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
@@ -45,7 +45,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           <BottomTabs />
         </ThemeProvider>
-        <PwaInit />
         <ScrollRestoration />
         <Scripts />
       </body>
