@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import { ThemeProvider } from "~/components/theme-provider"
 import { PwaInit } from "~/components/pwa-init";
+import { BottomTabs } from "~/components/bottom-tabs";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -35,9 +36,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="min-h-dvh">
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        {children}
+          <div className="min-h-dvh pb-[calc(var(--bottom-tabs-height)+env(safe-area-inset-bottom))]">
+            <main >
+              <div className="flex-1 pb-4">{children}</div>
+            </main>
+          </div>
+          <BottomTabs />
         </ThemeProvider>
         <PwaInit />
         <ScrollRestoration />

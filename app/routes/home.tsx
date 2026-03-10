@@ -20,11 +20,11 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const { habits } = useHabitStore();
-  const maxHabits = 3;
+  const maxHabits = 68;
   const isLimitReached = habits.length >= maxHabits;
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-black">
       <OnboardingModal />
       <div className="flex w-full flex-col gap-8 px-4 py-6 md:gap-10 md:px-6 lg:px-10 lg:py-10">
         <header className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">

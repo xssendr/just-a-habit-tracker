@@ -20,12 +20,13 @@ interface AutomaticCheckModalProps {
 function AutomaticCheckModal({ habitId, open, onOpenChange }: AutomaticCheckModalProps) {
   const { markAsAutomatic, getHabitById } = useHabitStore();
   const [showEdit, setShowEdit] = useState(false);
-  const habit = getHabitById(habitId);
+  const habitIdStr = String(habitId);
+  const habit = getHabitById(habitIdStr);
 
   if (!habit) return null;
 
   const handleYes = () => {
-    markAsAutomatic(habitId);
+    markAsAutomatic(habitIdStr);
     onOpenChange(false);
   };
 
@@ -82,7 +83,7 @@ function AutomaticCheckModal({ habitId, open, onOpenChange }: AutomaticCheckModa
       {showEdit && (
         <EditModal
           trigger={<div style={{ display: 'none' }} />}
-          id={habitId}
+          id={habitIdStr}
         />
       )}
     </>

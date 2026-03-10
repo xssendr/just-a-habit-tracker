@@ -20,7 +20,8 @@ import { Label } from "~/components/ui/label"
 import { Card, CardContent } from "~/components/ui/card"
 import { useHabitStore } from "stores/habits"
 import { getPopularHabitsByType, type PopularHabit } from "~/data/popularHabits"
-import { Sparkles, MoveRight } from "lucide-react"
+import { Sparkles } from "lucide-react"
+import { HelpTooltip } from "~/components/help-tooltip"
 
 type HabitFormValues = {
   trigger: string
@@ -58,7 +59,7 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
     setValue("action", habit.action)
     setValue("reward", habit.reward)
     if (habit.type === "Replacing") {
-      setValue("old_action", habit.old_action)
+      setValue("old_action", habit.old_action ?? undefined)
       setActiveTab("change")
     } else if (habit.type === "Breaking") {
       setActiveTab("delete")
@@ -193,7 +194,9 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
                   <p className="text-xs text-muted-foreground mb-1">Выбрано:</p>
                   <p className="text-sm font-medium">{selectedPopular.name}</p>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Вы можете изменить детали на вкладке "{selectedPopular.type === "Replacing" ? "Replace" : "Break"}"
+                    Вы можете изменить детали на вкладке "
+                    {selectedPopular.type === "Replacing" ? "Заменить" : selectedPopular.type === "Breaking" ? "Избавиться" : "Создать"}
+                    " под свои триггеры и формулировки.
                   </p>
                 </div>
               )}
@@ -324,6 +327,19 @@ function CreateModal({ trigger }: { trigger: React.ReactNode }) {
             </TabsContent>
 
             <TabsContent value="delete" className="space-y-4 mt-4">
+              <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground space-y-1">
+                <p className="font-medium text-foreground text-sm">
+                  Как работать с вредной привычкой (я хз куда это написать, чтобы было понятно)
+                </p>
+                <p>
+                  Полностью убрать триггер (ситуацию) часто сложно. Чаще всего помогает заранее
+                  решить, что делать по‑новому, когда этот триггер снова появится.
+                </p>
+                <p>
+                  Можно: а) уменьшить количество самих триггеров, б) придумать альтернативное
+                  действие на тот же триггер.
+                </p>
+              </div>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="flex flex-col gap-4"

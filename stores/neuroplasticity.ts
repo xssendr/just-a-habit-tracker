@@ -23,23 +23,23 @@ export const useNeuroplasticityStore = create<NeuroplasticityStore>()(
     (set, get) => ({
       cards: [
         {
-        title: "Упражнения",
-        description: "Физическая активность всячески помогает создавать новые нейроны за счет... ээээ...",
-        icon: "dumbbell",
-        color: "text-red-600 dark:text-red-400"
-    },
-    {
-        title: "Сон",
-        description: "Во время сна мозг обрабатывает полученную информацию и создает новые нейронные связи. 8 часов сна - минимум",
-        icon: "moon",
-        color: "text-indigo-600 dark:text-indigo-400"
-    },
-    {
-        title: "Полезное питание",
-        description: "Возможно, не знаю",
-        icon: "apple",
-        color: "text-emerald-600 dark:text-emerald-400"
-    }
+          title: "Движение и мозг",
+          description: "Регулярные лёгкие тренировки усиливают приток крови к мозгу и помогают укреплять новые связи. Даже 5–10 минут движения после привычного триггера уже дают эффект.",
+          icon: "dumbbell",
+          color: "text-red-600 dark:text-red-400"
+        },
+        {
+          title: "Сон и закрепление привычек",
+          description: "Во время сна мозг «перепаковывает» день и закрепляет повторяющиеся цепочки триггер → действие → награда. Стабильный сон делает новые привычки более прочными.",
+          icon: "moon",
+          color: "text-indigo-600 dark:text-indigo-400"
+        },
+        {
+          title: "Питание и энергия",
+          description: "Стабильное питание и вода снижают резкие провалы энергии. Так проще не срываться на старые триггеры вроде сладкого «на автомате» и удерживать новые привычки.",
+          icon: "apple",
+          color: "text-emerald-600 dark:text-emerald-400"
+        }
       ],
       completed: {},
       lastResetDate: null,
