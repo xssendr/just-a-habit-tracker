@@ -39,7 +39,7 @@ export function BottomTabs() {
       }}
       aria-label="Навигация"
     >
-      <div className="mx-auto grid w-full max-w-5xl grid-cols-2 px-3 py-2">
+      <div className="mx-auto grid w-full max-w-5xl grid-cols-2 px-3 py-2 gap-1">
         {tabs.map((t) => {
           const active = t.isActive(pathname);
           return (

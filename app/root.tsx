@@ -38,7 +38,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </head>
       <body className="min-h-dvh">
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-          <div className="min-h-dvh pb-[calc(var(--bottom-tabs-height)+env(safe-area-inset-bottom))]">
+          <div className="bg-background min-h-dvh pb-[calc(var(--bottom-tabs-height)+env(safe-area-inset-bottom))]">
             <main >
               <div className="flex-1 pb-4">{children}</div>
             </main>

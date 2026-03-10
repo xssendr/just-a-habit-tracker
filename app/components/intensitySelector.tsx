@@ -49,7 +49,7 @@ function IntensitySelector({ onSelect, selected }: IntensitySelectorProps) {
             }`}
           >
             <span className="text-xs font-medium text-white">{option.label}</span>
-            <span className="text-[10px]">{option.description}</span>
+
           </Button>
         ))}
       </div>

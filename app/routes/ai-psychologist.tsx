@@ -72,7 +72,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
         action: "10 минут: приглушить свет, убрать телефон подальше, 5 медленных вдохов",
         reward: "Ощущение завершённости дня и быстрее засыпаю",
         why: "Снижает возбуждение и закрепляет стабильный «сигнал ко сну».",
-        goalDays: 21,
+        goalDays: 30,
       },
       {
         title: "Стабильное утро (1 действие)",
@@ -81,7 +81,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
         action: "Сразу открыть шторы/свет и выпить стакан воды",
         reward: "Быстрее просыпаюсь, меньше «тумана»",
         why: "Свет и вода помогают ритмам, а простота повышает шанс закрепления.",
-        goalDays: 21,
+        goalDays: 30,
       }
     );
   }
@@ -94,7 +94,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
       action: "1 минута: выдох длиннее вдоха (например, 4–6) + расслабить плечи",
       reward: "Чуть спокойнее и яснее",
       why: "Короткие вмешательства легче делать регулярно — это ключ к привычке.",
-      goalDays: 14,
+      goalDays: 30,
     });
   }
 
@@ -106,7 +106,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
       action: "Запустить таймер на 2 минуты и сделать самый маленький шаг (черновик/план/1 абзац)",
       reward: "Легче войти в работу",
       why: "Снижает порог входа и переобучает мозг ассоциировать задачу с быстрым успехом.",
-      goalDays: 14,
+      goalDays: 30,
     });
   }
 
@@ -118,7 +118,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
       action: "Выпить стакан воды и подождать 2 минуты",
       reward: "Меньше импульсивных перекусов",
       why: "Пауза и гидратация часто снижают тягу, не требуя силы воли.",
-      goalDays: 21,
+      goalDays: 30,
     });
   }
 
@@ -130,7 +130,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
       action: "5–10 минут ходьбы или лёгкая разминка",
       reward: "Больше энергии и меньше «залипания»",
       why: "Низкая планка помогает стабилизировать рутину движения.",
-      goalDays: 21,
+      goalDays: 30,
     });
   }
 
@@ -145,7 +145,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
             action: "Сформулировать 1 микро-действие на 2 минуты и сделать его сразу",
             reward: "Чувство контроля и прогресса",
             why: "Чем меньше трение, тем выше повторяемость — а значит, и формирование привычки.",
-            goalDays: 14,
+            goalDays: 30,
           },
           {
             title: "Короткая рефлексия вечером",
@@ -154,7 +154,7 @@ function heuristicReply(messages: ChatMessage[]): ActionResponse {
             action: "Записать 1 вещь, которая получилась, и 1 шаг на завтра",
             reward: "Спокойнее и понятнее, что делать дальше",
             why: "Укрепляет чувство эффективности и снижает неопределённость.",
-            goalDays: 14,
+            goalDays: 30,
           },
         ];
 
@@ -284,9 +284,9 @@ export default function AiPsychologistRoute() {
 
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-5">
           <Card className="lg:col-span-3">
-            <CardContent className="p-4 md:p-6 space-y-4">
-              <ScrollArea className="h-[48dvh] sm:h-[52vh] rounded-md border bg-muted/10">
-                <div className="p-4 space-y-3">
+            <CardContent className=" space-y-4">
+              <ScrollArea className="h-[48dvh] sm:h-[52vh] p-2">
+                <div className="space-y-3">
                   {messages.map((m, idx) => (
                     <div
                       key={idx}
@@ -300,7 +300,7 @@ export default function AiPsychologistRoute() {
                           "max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed shadow-sm",
                           m.role === "user"
                             ? "bg-primary text-primary-foreground"
-                            : "bg-card border"
+                            : "bg-muted"
                         )}
                       >
                         {m.content}
@@ -309,7 +309,7 @@ export default function AiPsychologistRoute() {
                   ))}
                   {isSending && (
                     <div className="flex justify-start">
-                      <div className="max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed bg-card border text-muted-foreground">
+                      <div className="max-w-[85%] rounded-2xl px-4 py-3 text-sm leading-relaxed bg-card  text-muted-foreground">
                         Думаю…
                       </div>
                     </div>
