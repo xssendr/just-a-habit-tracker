@@ -8,6 +8,7 @@ import { Neuroplasticity } from "~/components/neuroplasticity";
 import { Card, CardContent } from "~/components/ui/card";
 import { OnboardingModal } from "~/components/onboarding/OnboardingModal";
 import { useEffect } from "react";
+import { useLaunchParams } from '@tma.js/sdk-react';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -20,9 +21,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  useEffect(() => {
-    console.log(window.Telegram?.WebApp.initData)
-  })
+  console.log(useLaunchParams());
   const { habits } = useHabitStore();
   const maxHabits = 68;
   const isLimitReached = habits.length >= maxHabits;
