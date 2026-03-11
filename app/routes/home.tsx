@@ -8,7 +8,7 @@ import { Neuroplasticity } from "~/components/neuroplasticity";
 import { Card, CardContent } from "~/components/ui/card";
 import { OnboardingModal } from "~/components/onboarding/OnboardingModal";
 import { useEffect } from "react";
-import { useLaunchParams } from '@tma.js/sdk-react';
+import { retrieveLaunchParams } from '@tma.js/sdk-react';
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -21,7 +21,12 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  console.log(useLaunchParams());
+  try {
+    const launchParams = retrieveLaunchParams();
+    console.log(launchParams)
+    } catch (error) {
+      console.error('Error retrieving launch params:', error);
+    } 
   const { habits } = useHabitStore();
   const maxHabits = 68;
   const isLimitReached = habits.length >= maxHabits;
