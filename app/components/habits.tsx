@@ -10,6 +10,7 @@ import { DeleteModal } from "~/components/deleteModal";
 import { AutomaticCheckModal } from "~/components/automaticCheckModal";
 import { IntensityModal } from "~/components/intensityModal";
 import { SkipReasonModal } from "~/components/skipReasonModal";
+import React from "react";
 
 function Habits() {
   const { habits, toggleHabit, getIntensityStats, checkMissedDays, resetStreak } = useHabitStore();
@@ -76,14 +77,13 @@ function Habits() {
         const intensityColor = getIntensityColor(averagePercentage);
 
         return (
-          <>
+          <React.Fragment key={habit.id}>
             <Card
               className={`group w-full max-w-full flex-shrink transition-all duration-200 ${
                 isCompletedToday
                   ? "bg-primary/5 shadow-md"
                   : "bg-card/95 shadow-sm hover:-translate-y-1 hover:shadow-md"
               }`}
-              key={habit.id}
             >
             <CardContent className="flex h-full flex-col justify-between">
               <div className="flex items-start justify-between">
@@ -246,7 +246,7 @@ function Habits() {
             onConfirm={(reason: string) => handleSkipReason(habit.id, reason)}
             habitName={habit.action}
           />
-        </>
+        </React.Fragment>
         );
       })}
     </>

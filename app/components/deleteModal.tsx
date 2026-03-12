@@ -32,7 +32,7 @@ function DeleteModal({ trigger, id }: { trigger: React.ReactNode, id: string }) 
           </div>
           <DialogTitle className="text-center text-xl font-bold">Удалить привычку?</DialogTitle>
           <DialogDescription className="text-center text-base pt-2">
-              Это действие невозможно отменить и весь прогресс полетит в кювет
+              Это действие невозможно отменить, весь прогресс будет утерян
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-3 pt-4 sm:flex-row-reverse">

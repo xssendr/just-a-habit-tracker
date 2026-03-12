@@ -8,6 +8,8 @@ import {
 } from "react-router";
 import { ThemeProvider } from "~/components/theme-provider"
 import { BottomTabs } from "~/components/bottom-tabs";
+import { useEffect } from "react";
+import { useHabitStore } from "stores/habits";
 
 import type { Route } from "./+types/root";
 import "./app.css";
@@ -27,6 +29,11 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    // Prevent SSR/client hydration mismatches caused by persisted client state.
+    void useHabitStore.persist.rehydrate();
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -42,7 +49,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex-1 pb-4">{children}</div>
             </main>
           </div>
-          <BottomTabs />
+          {/* <BottomTabs /> */}
         </ThemeProvider>
         <ScrollRestoration />
         <Scripts />

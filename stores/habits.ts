@@ -24,6 +24,8 @@ export interface Habit {
 
 type HabitStore = {
   habits: Habit[];
+  hasHydrated: boolean;
+  setHasHydrated: (hasHydrated: boolean) => void;
   createHabit: (habit: Habit) => void;
   toggleHabit: (id: string, intensity?: IntensityLevel) => void;
   editHabit: (id: string, data: Partial<Omit<Habit, 'id'>>) => void;
@@ -53,6 +55,8 @@ export const useHabitStore = create<HabitStore>()(
   persist<HabitStore>(
     (set, get) => ({
       habits: [],
+      hasHydrated: false,
+      setHasHydrated: (hasHydrated) => set({ hasHydrated }),
 
       createHabit: (habit) =>
         set((state) => ({
@@ -253,6 +257,9 @@ export const useHabitStore = create<HabitStore>()(
     }),
     {
       name: 'habit-store',
+      // SSR: keep the first client render identical to the server render,
+      // then explicitly rehydrate on the client (see `app/root.tsx`).
+      skipHydration: true,
       migrate: (persistedState: any) => {
         if (persistedState?.state?.habits) {
           return {
@@ -264,6 +271,9 @@ export const useHabitStore = create<HabitStore>()(
           };
         }
         return persistedState;
+      },
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
       },
     }
   )

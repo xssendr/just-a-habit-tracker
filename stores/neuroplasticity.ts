@@ -14,9 +14,19 @@ type NeuroplasticityStore = {
   cards: NeuroplasticityCard[];
   completed: Record<string, boolean>;
   lastResetDate: string | null;
+  hasHydrated: boolean;
+  setHasHydrated: (hasHydrated: boolean) => void;
+  ensureToday: () => void;
   toggleCard: (title: string) => void;
   isCompleted: (title: string) => boolean;
 };
+
+function getLocalDayKey(d = new Date()) {
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  return `${yyyy}-${mm}-${dd}`;
+}
 
 export const useNeuroplasticityStore = create<NeuroplasticityStore>()(
   persist(
@@ -43,10 +53,20 @@ export const useNeuroplasticityStore = create<NeuroplasticityStore>()(
       ],
       completed: {},
       lastResetDate: null,
+      hasHydrated: false,
+      setHasHydrated: (hasHydrated) => set({ hasHydrated }),
+
+      ensureToday: () => {
+        const today = getLocalDayKey();
+        const state = get();
+        if (state.lastResetDate !== today) {
+          set({ completed: {}, lastResetDate: today });
+        }
+      },
 
       toggleCard: (title) =>
         set((state) => {
-          const today = new Date().toISOString().split("T")[0];
+          const today = getLocalDayKey();
           
           if (state.lastResetDate !== today) {
             return {
@@ -64,22 +84,16 @@ export const useNeuroplasticityStore = create<NeuroplasticityStore>()(
         }),
 
       isCompleted: (title) => {
-        const today = new Date().toISOString().split("T")[0];
-        const state = get();
-
-        if (state.lastResetDate !== today) {
-          set({
-            completed: {},
-            lastResetDate: today,
-          });
-          return false;
-        }
-
-        return state.completed[title] || false;
+        return get().completed[title] || false;
       },
     }),
     {
       name: 'neuroplasticity-store', // 🔑 localStorage key
+      skipHydration: true,
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true);
+        state?.ensureToday();
+      },
     }
   )
 );

@@ -13,7 +13,53 @@ const iconMap: Record<IconType, React.ComponentType<any>> = {
 }
 
 function Neuroplasticity() {
-    const { cards, toggleCard, isCompleted } = useNeuroplasticityStore();
+    const { cards, toggleCard, isCompleted, hasHydrated, ensureToday } = useNeuroplasticityStore();
+
+    React.useEffect(() => {
+        // Ensure the first client render matches SSR output, then hydrate from localStorage.
+        void useNeuroplasticityStore.persist.rehydrate();
+    }, []);
+
+    React.useEffect(() => {
+        if (hasHydrated) ensureToday();
+    }, [hasHydrated, ensureToday]);
+
+    if (!hasHydrated) {
+        return (
+            <>
+                {cards.map((card) => {
+                    const Icon = iconMap[card.icon];
+                    return (
+                        <Card
+                            key={card.title}
+                            className="group w-full transition-all duration-200 bg-card/95 shadow-sm"
+                        >
+                            <CardContent className="flex h-full flex-col gap-4 justify-between">
+                                <div className="flex items-start gap-3">
+                                    <div className={`rounded-lg bg-muted p-2.5 ${card.color} transition-colors`}>
+                                        <Icon />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                        <h3 className="text-base font-bold tracking-tight mb-1.5">
+                                            {card.title}
+                                        </h3>
+                                        <p className="text-sm leading-relaxed text-muted-foreground">
+                                            {card.description}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="space-y-2">
+                                    <Button size="lg" className="w-full cursor-pointer" disabled>
+                                        <Check className="h-4 w-4" /> Выполнить
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    );
+                })}
+            </>
+        );
+    }
     return (
         <>
         {cards.map(card => {
