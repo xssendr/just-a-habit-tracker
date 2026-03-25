@@ -1,7 +1,7 @@
 {
   "name": "Just a Habit Tracker",
-  "short_name": "HabitTracker",
-  "description": "Track your habits effectively and build better routines.",
+  "short_name": "Habit Tracker",
+  "description": "Трекер привычек, не иначе",
   "theme_color": "#008080",
   "background_color": "#ffffff",
   "display": "standalone",
