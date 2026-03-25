@@ -8,6 +8,7 @@ import {
 } from "react-router";
 import { ThemeProvider } from "~/components/theme-provider"
 import { BottomTabs } from "~/components/bottom-tabs";
+import { PwaInit } from "~/components/pwa-init"; 
 import { useEffect } from "react";
 import { useHabitStore } from "stores/habits";
 
@@ -45,6 +46,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body className="min-h-dvh">
         <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
           <div className="bg-background min-h-dvh pb-[calc(var(--bottom-tabs-height)+env(safe-area-inset-bottom))]">
+            <PwaInit />
             <main >
               <div className="flex-1 pb-4">{children}</div>
             </main>
